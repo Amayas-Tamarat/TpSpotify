@@ -7,7 +7,9 @@ body {
     width: 98px;
     
 }
-
+.header{
+    width: 60%;
+}
 .head {
     background-image: url('https://www.alf.fr/wp-content/uploads/2018/07/Scorpions-groupe.jpg');
     background-size: cover;
@@ -21,7 +23,9 @@ body {
     overflow-x: scroll;
     white-space: nowrap;
     padding: 0%;
-
+}
+    .containerTall{
+        height: 25%;
   }
   
   .box {
