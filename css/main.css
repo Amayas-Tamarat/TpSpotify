@@ -1,0 +1,74 @@
+body {
+    background-color: rgb(46, 36, 36);
+    margin: 10px;
+}
+
+.recherche {
+    width: 98px;
+    
+}
+
+.head {
+    background-image: url('https://www.alf.fr/wp-content/uploads/2018/07/Scorpions-groupe.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 50%;
+}
+
+.container {
+    background-color: black;
+    display: flex;
+    overflow-x: scroll;
+    white-space: nowrap;
+    padding: 0%;
+
+  }
+  
+  .box {
+    flex: 1;
+    border: 1px solid rgb(2, 46, 244);
+    border-radius: 10%;
+    padding: 10px;
+    margin: 5px;
+    height: 150px;
+    width: 150px;
+    transition: ease-in;
+  }
+
+  
+
+  h2 {
+    color: white;
+  }
+
+
+  .box img {
+    
+    height: 100px;
+    width: 100%;
+    border-radius: 50px;
+  }
+
+  p{
+    color: white;
+  }
+
+  .comment {
+   
+        height: 100px;
+        width: 600px;
+        margin: auto;
+  }
+  #comm {
+    height: 100px;
+    width: 600px;
+    border: 4px rgb(16, 16, 16) solid;
+  }
+
+  .commAffiche {
+    height: 200px;
+    width: auto;
+    background-color: aquamarine;
+    margin-top: 20px;
+  }
+  
