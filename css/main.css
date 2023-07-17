@@ -1,0 +1,13 @@
+body{
+    min-width: none;
+    min-height: 100%;
+}
+.header{
+    width: 60%;
+}
+.containerTall{
+height: 25%;
+}
+.bcg{
+    background-color: brown;
+}
