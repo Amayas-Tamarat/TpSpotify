@@ -1,3 +1,9 @@
+<?php
+include('./connect/connect.php');
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,34 +22,50 @@
             <button class="btn btn-primary">connexion</button><br><br>
             <input class="recherche" placeholder="Recherche" type="text">
         </div>
-       
+
     </section>
-    
+
     <section>
-    <h2>album</h2>
-    <div class="container">
-      <div class="box">
-        <img src="./img/bellie eilish.jpg" alt="">
-        <p>Bellie Eilish</p>
-      </div>
-      <div class="box"></div>
-      <div class="box"></div>
-      <div class="box"></div>
-     
-      
-    </div>
-  </section>
-    
-  <section>
-    <h2>playlist</h2>
-    <div class="container">
-      <div class="box"></div>
-      <div class="box"></div>
-      <div class="box"></div>
-      <div class="box"></div>
-      <div class="box"></div>
-    </div>
-  </section>
+        <h2>album</h2>
+
+        <?php
+        $sql = ("SELECT * FROM  album");
+        $query = $db->prepare($sql);
+        $query->execute();
+        $albums = $query->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($albums as $album) {
+            $_GET['id'] = $album['id_album'];
+            $albumId = $album['id_album'];
+            echo '<div class="box">';
+            echo '<a href="Player.php?id=' . $albumId . '">';
+            echo '<img src="../img/' . $album['img'] . '" alt="" />';
+            echo '</a>';
+            echo '</div>';
+        }
+        ?>
+
+    </section>
+
+    <section>
+        <h2>playlist</h2>
+        <?php
+
+        $sql = ("SELECT * FROM  playlist");
+        $query = $db->prepare($sql);
+        $query->execute();
+        $playlists = $query->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($playlists as $playlist) {
+            $_GET['id'] = $playlist['id_playlist'];
+            $playlistId = $playlist['id_playlist'];
+            echo '<div class="box">';
+            echo '<a href="playlistMusique.php?id=' . $playlistId . '">';
+            echo '<img src="../img/' . $playlist['img'] . '" alt="" />';
+            echo '</a>';
+            echo '</div>';
+        }
+        ?>
+
+    </section>
 
 
 
