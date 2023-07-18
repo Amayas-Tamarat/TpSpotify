@@ -1,7 +1,11 @@
 <?php
 require_once('../connect/connect.php');
 $idPlaylist = $_GET['id'];
-$sql = ("SELECT * FROM musique, musique_playlist WHERE musique_playlist.id_playlist = :idPlaylist ;");
+$sql = ("SELECT musique.id_musique, musique.path, musique.title, musique.id_album 
+        FROM musique, musique_playlist, playlist 
+        WHERE musique.id_musique = musique_playlist.id_musique 
+        AND musique_playlist.id_playlist = playlist.id_playlist 
+        AND playlist.id_playlist = :idPlaylist; ");
 $query = $db->prepare($sql);
 $query->bindValue(':idPlaylist', $idPlaylist, PDO::PARAM_INT);
 $query->execute();
