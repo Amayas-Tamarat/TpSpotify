@@ -5,6 +5,9 @@ include('./connect/connect.php');
 
 
 <body>
+<?php
+include('./partiels/marquee-rss.php')
+?>
     <section>
 
         <div class="container2 d-flex justify-content-center my-4 mb-5">
@@ -79,16 +82,25 @@ include('./connect/connect.php');
 
     <section>
         <div class="comment">
-            <input type="text" id="comm" placeholder="comment" />
+           <form action="" method="POST">
+           <input type="text" id="comm" placeholder="comment" />
+            <button type="submit" class="btn btn-primary">Submite</button>
+           </form>
+        
         </div>
+        <br><br>
         <div class="commAffiche">
             <!-- afficher les comm -->
+            <?php
+
+
+            ?>
         </div>
     </section>
 
     <section>
         <?php
-        include('./partiels/playlist.php');
+        
         $sql = ("SELECT * FROM  playlist");
         $query = $db->prepare($sql);
         $query->execute();
@@ -96,11 +108,14 @@ include('./connect/connect.php');
         foreach ($playlists as $playlist) {
             $_GET['id'] = $playlist['id_playlist'];
             $playlistId = $playlist['id_playlist'];
-            echo '<a href="playlistMusique.php?id=' . $playlistId . '">';
+            echo '<div class="box">';
+            echo '<a href="playlist-player.php?id=' . $playlistId . '">';
             echo '<img src="../img/' . $playlist['img'] . '" alt="" />';
             echo '</a>';
+            echo '</div>';
         }
         
+
         ?>
     </section>
 
