@@ -17,16 +17,16 @@ body {
     height: 50%;
 }
 
-.container {
+.container2 {
     background-color: black;
     display: flex;
     overflow-x: scroll;
     white-space: nowrap;
     padding: 0%;
 }
-    .containerTall{
+.containerTall{
         height: 25%;
-  }
+}
   
   .box {
     flex: 1;
@@ -75,4 +75,20 @@ body {
     background-color: aquamarine;
     margin-top: 20px;
   }
+  .audio-player {
+    background-color: #000000;
+    padding: 10px;
+    margin: 10px;
+    width: 300px;
+  }
+  
+  .controls {
+    margin-top: 10px;
+  }
+  
+  button {
+    padding: 5px 10px;
+    margin-right: 5px;
+  }
+
   
