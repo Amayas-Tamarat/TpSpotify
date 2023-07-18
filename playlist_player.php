@@ -10,27 +10,38 @@
             <div class="text-center">
                 <?php
 
-                $sql = ("SELECT * FROM  playlist");
-                $query = $db->prepare($sql);
-                $query->execute();
-                $playlists = $query->fetchAll(PDO::FETCH_ASSOC);
+$idPlaylist = $_GET['id'];
+$sql = "SELECT playlist.img, playlist.id_playlist
+        FROM playlist
+        WHERE playlist.id_playlist = :idPlaylist";
+
+$query = $db->prepare($sql);
+$query->bindValue(':idPlaylist', $idPlaylist, PDO::PARAM_INT);
+$query->execute();
+$playlists = $query->fetchAll(PDO::FETCH_ASSOC);
                 foreach ($playlists as $playlist) {
                     echo
                     '<a href="#">
     <img class="col-6" src=../img/' . $playlist['img'] . ' alt="" />
     </a>';
                 }
-                ?>
-            </div>
-        </div>
-    </div>
+                 ?>
+//             </div>
+//         </div>
+//     </div>
 
     <div class="container">
   <?php
-  $sql = "SELECT * FROM musique";
-  $query = $db->prepare($sql);
-  $query->execute();
-  $musiques = $query->fetchAll(PDO::FETCH_ASSOC);
+$idPlaylist = $_GET['id'];
+$sql = ("SELECT musique.id_musique, musique.path, musique.title
+        FROM musique, musique_playlist, playlist 
+        WHERE musique.id_musique = musique_playlist.id_musique 
+        AND musique_playlist.id_playlist = playlist.id_playlist 
+        AND playlist.id_playlist = :idPlaylist; ");
+$query = $db->prepare($sql);
+$query->bindValue(':idPlaylist', $idPlaylist, PDO::PARAM_INT);
+$query->execute();
+$musiques = $query->fetchAll(PDO::FETCH_ASSOC);
   foreach ($musiques as $musique) {
     echo '
     <div class="row">

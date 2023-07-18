@@ -92,4 +92,11 @@ body {
     margin-right: 5px;
   }
 
-  
+  .play-btn{
+border-radius: 50%;
+background: rgb(39, 241, 255);
+  }
+@font-face{
+  font-family: "CircularSpotifyText-Book", sans-serif;
+  src: url("./font/Circular\ Book\ Font\ Family/CircularSpotifyText-Book");
+}
