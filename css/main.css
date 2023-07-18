@@ -1,6 +1,6 @@
 body {
-    background-color: rgb(46, 36, 36);
-    margin: 10px;
+    background-color: rgb(20, 20, 20);
+    margin: 20px;
 }
 
 .recherche {
@@ -34,14 +34,23 @@ body {
     height: 150px;
     width: 150px;
     transition: ease-in;
+    text-align: center;
   }
 
   
 
   h2 {
-    color: white;
+    font-family:'CircularStd-Medium';
+    src: url('./font/CircularStd-Medium.otf');
+    color: rgb(245, 246, 248);
   }
 
+  h5 {
+    font-family:'CircularStd-Medium';
+    src: url('./font/CircularStd-Medium.otf');
+    color: white;
+  }
+  
 
   .box img {
     
@@ -69,7 +78,19 @@ body {
   .commAffiche {
     height: 200px;
     width: auto;
-    background-color: aquamarine;
+    background-color: rgb(23, 28, 26);
     margin-top: 20px;
   }
   
+  .album {
+    margin-top: 20px;
+
+  }
+
+  .playlist {
+    margin-top: 20px;
+  }
+
+  .ticker-container {
+    background-color: rgb(250, 251, 252);
+  }

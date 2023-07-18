@@ -16,6 +16,10 @@ include('./connect/connect.php');
 </head>
 
 <body>
+
+<?php
+include('./partiels/marquee-rss.php');
+?>
     <section class="sec1">
         <div class="head">
             <button class="btn btn-primary">Accueil</button><br><br>
@@ -25,7 +29,7 @@ include('./connect/connect.php');
 
     </section>
 
-    <section>
+    <section class="album">
         <h2>album</h2>
 
         <?php
@@ -37,8 +41,9 @@ include('./connect/connect.php');
             $_GET['id'] = $album['id_album'];
             $albumId = $album['id_album'];
             echo '<div class="box">';
-            echo '<a href="Player.php?id=' . $albumId . '">';
+            echo '<a href="playlist-player.php?id=' . $albumId . '">';
             echo '<img src="../img/' . $album['img'] . '" alt="" />';
+            echo '<h5>' . $album['title'] . '</h5>';
             echo '</a>';
             echo '</div>';
         }
@@ -46,7 +51,7 @@ include('./connect/connect.php');
 
     </section>
 
-    <section>
+    <section class="playlist">
         <h2>playlist</h2>
         <?php
 
@@ -58,7 +63,7 @@ include('./connect/connect.php');
             $_GET['id'] = $playlist['id_playlist'];
             $playlistId = $playlist['id_playlist'];
             echo '<div class="box">';
-            echo '<a href="playlistMusique.php?id=' . $playlistId . '">';
+            echo '<a href="playlist-player.php?id=' . $playlistId . '">';
             echo '<img src="../img/' . $playlist['img'] . '" alt="" />';
             echo '</a>';
             echo '</div>';
