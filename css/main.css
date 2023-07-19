@@ -1,5 +1,5 @@
 body {
-    background-color: rgb(46, 36, 36);
+    background-color: rgb(0, 0, 0);
     margin: 10px;
 }
 
@@ -76,9 +76,8 @@ body {
     margin-top: 20px;
   }
   .audio-player {
-    background-color: #000000;
+    background-color: #ffffff;
     padding: 10px;
-    margin: 10px;
     width: 300px;
   }
   
@@ -93,9 +92,14 @@ body {
 
   .play-btn{
 border-radius: 50%;
-background: rgb(39, 241, 255);
+background: rgb(39, 255, 57);
   }
 @font-face{
   font-family: "CircularSpotifyText-Book", sans-serif;
   src: url("./font/Circular\ Book\ Font\ Family/CircularSpotifyText-Book");
+}
+.ma-div {
+  position: absolute;
+  right: 0;
+  top:10;
 }
