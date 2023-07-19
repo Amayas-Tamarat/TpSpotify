@@ -103,3 +103,7 @@ background: rgb(39, 255, 57);
   right: 0;
   top:10;
 }
+.redirect-btn {
+  border-radius: 50%;
+background: rgb(39, 255, 57);
+}

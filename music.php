@@ -1,5 +1,6 @@
 <?php
 include('./partiels/header.php');
+$idMusique = $_GET['id'];
 ?>
 
 

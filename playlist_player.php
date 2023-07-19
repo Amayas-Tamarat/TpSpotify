@@ -9,86 +9,8 @@ require_once("./partiels/header.php");
   <div class="container-fluid">
     <div class="row">
       <div class="col-4">
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
-<p>s</p>
+<p>SpotHify</p>
+
       </div>
   <div class="col-8">
         <?php
@@ -124,13 +46,13 @@ require_once("./partiels/header.php");
     $query->bindValue(':idPlaylist', $idPlaylist, PDO::PARAM_INT);
     $query->execute();
     $musiques = $query->fetchAll(PDO::FETCH_ASSOC);
-    foreach ($musiques as $musique) {
+    foreach ($musiques as $musique) {  
       echo '
   <div class="row">
       <div class="col-8 d-flex ">
           <div class="audio-player">
               <div class="controls">
-                  <button class="play-btn" data-audio-path="./audoi/' . $musique['path'] . '" data-audio-id="' . $musique['id_musique'] . '">
+                  <button class="play-btn" data-audio-path="./audio/' . $musique['path'] . '" data-audio-id="' . $musique['id_musique'] . '">
                       ' . $musique['title'] . '
                   </button>
               </div>
