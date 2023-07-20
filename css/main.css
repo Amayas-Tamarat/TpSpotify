@@ -1,5 +1,5 @@
 body {
-    background-color: rgb(0, 0, 0);
+    background-color: rgb(46, 36, 36);
     margin: 10px;
 }
 
@@ -20,7 +20,7 @@ body {
 .container2 {
     background-color: black;
     display: flex;
-    overflow-x: scroll;
+    
     white-space: nowrap;
     padding: 0%;
 }
@@ -30,6 +30,7 @@ body {
   
   .box {
     flex: 1;
+    display: inline-block;
     border: 1px solid rgb(2, 46, 244);
     border-radius: 10%;
     padding: 10px;
@@ -37,14 +38,23 @@ body {
     height: 150px;
     width: 150px;
     transition: ease-in;
+    text-align: center;
   }
 
   
 
   h2 {
-    color: white;
+    font-family:'CircularStd-Medium';
+    src: url('./font/CircularStd-Medium.otf');
+    color: rgb(245, 246, 248);
   }
 
+  h5 {
+    font-family:'CircularStd-Medium';
+    src: url('./font/CircularStd-Medium.otf');
+    color: white;
+  }
+  
 
   .box img {
     
@@ -72,7 +82,7 @@ body {
   .commAffiche {
     height: 200px;
     width: auto;
-    background-color: aquamarine;
+    background-color: rgb(23, 28, 26);
     margin-top: 20px;
   }
   .audio-player {
@@ -114,7 +124,6 @@ background: rgb(39, 255, 57);
 }
 svg{
   fill: white;
-  text-decoration: none;
 }
 a{
   text-decoration: none;

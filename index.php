@@ -1,3 +1,9 @@
+<?php
+include('./connect/connect.php');
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,50 +16,76 @@
 </head>
 
 <body>
+
+<?php
+include('./partiels/marquee-rss.php');
+?>
     <section class="sec1">
         <div class="head">
             <button class="btn btn-primary">Accueil</button><br><br>
             <button class="btn btn-primary">connexion</button><br><br>
             <input class="recherche" placeholder="Recherche" type="text">
         </div>
-       
+
     </section>
-    
-    <section>
-    <h2>album</h2>
-    <div class="container">
-      <div class="box">
-        <img src="./img/bellie eilish.jpg" alt="">
-        <p>Bellie Eilish</p>
-      </div>
-      <div class="box"></div>
-      <div class="box"></div>
-      <div class="box"></div>
-     
-      
-    </div>
-  </section>
-    
-  <section>
-    <h2>playlist</h2>
-    <div class="container">
-      <div class="box"></div>
-      <div class="box"></div>
-      <div class="box"></div>
-      <div class="box"></div>
-      <div class="box"></div>
-    </div>
-  </section>
+
+    <section class="album">
+        <h2>album</h2>
+
+        <?php
+        $sql = ("SELECT * FROM  album");
+        $query = $db->prepare($sql);
+        $query->execute();
+        $albums = $query->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($albums as $album) {
+            $_GET['id'] = $album['id_album'];
+            $albumId = $album['id_album'];
+            echo '<div class="box">';
+            echo '<a href="album_player.php?id=' . $albumId . '">';
+            echo '<img src="../img/' . $album['img'] . '" alt="" />';
+            echo '<h5>' . $album['title'] . '</h5>';
+            echo '</a>';
+            echo '</div>';
+        }
+        ?>
+
+    </section>
+
+    <section class="playlist">
+        <h2>playlist</h2>
+        <?php
+
+        $sql = ("SELECT * FROM  playlist");
+        $query = $db->prepare($sql);
+        $query->execute();
+        $playlists = $query->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($playlists as $playlist) {
+            $_GET['id'] = $playlist['id_playlist'];
+            $playlistId = $playlist['id_playlist'];
+            echo '<div class="box">';
+            echo '<a href="playlist_player.php?id=' . $playlistId . '">';
+            echo '<img src="../img/' . $playlist['img'] . '" alt="" />';
+            echo '</a>';
+            echo '</div>';
+        }
+        ?>
+
+    </section>
 
 
 
 
 
-
-
+<div class="footer">
+<audio controls>
+    <source src="chemin/vers/votre/fichier/audio.mp3" type="audio/mpeg">
+    Votre navigateur ne prend pas en charge l'élément audio.
+  </audio>
+</div>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+
 </body>
 
 </html>

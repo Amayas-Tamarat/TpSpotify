@@ -15,8 +15,9 @@
 
                 <?php
                 $idAlbum = $_GET['id'];
-                $sql = ("SELECT * FROM  album");
+                $sql = ("SELECT * FROM  album WHERE id_album = :idAlbum ");
                 $query = $db->prepare($sql);
+                $query->bindValue(':idAlbum', $idAlbum, PDO::PARAM_INT);
                 $query->execute();
                 $albums = $query->fetchAll(PDO::FETCH_ASSOC);
                 foreach ($albums as $album) {
@@ -58,18 +59,19 @@ $sql = ("SELECT * FROM  musique WHERE id_album = :idAlbum ");
         </div>';
           }
   ?>
-  <script>
-    function redirectToMusiquePage(id) {
-        window.location.href = 'musique.php?id=' + id;
-    }
-</script>
 </div>
-    </div>
-    </div>
-      </div>
 
 
 
+    <div class="container text-center">
+        <?php
+        foreach ($albums as $album) {
+            echo
+            '<a href="#">
+    <img class="col-8" src=../img/' . $album['img'] . ' alt="" />
+    </a>';
+        }
+        ?>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 </body>
