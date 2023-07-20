@@ -1,6 +1,6 @@
 body {
-    background-color: rgb(20, 20, 20);
-    margin: 20px;
+    background-color: rgb(46, 36, 36);
+    margin: 10px;
 }
 
 .recherche {
@@ -86,9 +86,7 @@ body {
     margin-top: 20px;
   }
   .audio-player {
-    background-color: #000000;
     padding: 10px;
-    margin: 10px;
     width: 300px;
   }
   
@@ -103,25 +101,9 @@ body {
 
   .play-btn{
 border-radius: 50%;
-background: rgb(39, 241, 255);
+background: rgb(39, 255, 57);
   }
 @font-face{
   font-family: "CircularSpotifyText-Book", sans-serif;
   src: url("./font/Circular\ Book\ Font\ Family/CircularSpotifyText-Book");
 }
-
-.footer {
-  height: 60px;
-  width: 2000px;
-  position: absolute;
-  bottom: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.ss {
-  height: 100px;
-  width: auto;
-}
-
