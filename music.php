@@ -1,13 +1,27 @@
 <?php
 include('./partiels/header.php');
 include('./connect/connect.php');
+
+
+
+$idMusique = $_GET['id'];
+$sql = ("SELECT * FROM musique WHERE id_musique = :idmusique;");
+$query = $db->prepare($sql);
+$query->bindValue(':idmusique', $idMusique, PDO::PARAM_INT);
+$query->execute();
+$musiques = $query->fetchAll(PDO::FETCH_ASSOC);
+foreach ($musiques as $musique) {
+    $pathmusique = $musique['path'];
+}
 ?>
+
+
 
 
 <body>
-<?php
-include('./partiels/marquee-rss.php')
-?>
+    <?php
+    include('./partiels/marquee-rss.php')
+    ?>
     <section>
 
         <div class="container2 d-flex justify-content-center my-4 mb-5">
@@ -17,57 +31,54 @@ include('./partiels/marquee-rss.php')
                 <!-- Card -->
                 <div class="card">
                     <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-                        <img class="card-img-top" src="https://i1.sndcdn.com/artworks-000140788375-166f62-t500x500.jpg" alt="Card image cap">
-                        <a href="#!">
+                        <?php
+
+                        echo '<img   src=./img/' .  $musique['img'] . ' ';
+                        ?> <a href="#!">
                             <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
                         </a>
                     </div>
                     <div class="card-body text-center">
-
-                        <h5 class="h5 font-weight-bold"><a href="#" target="_blank">Bicep - Just</a></h5>
+                        <?php
+                        foreach ($musiques as $musique) {
+                            echo $musique['title'];
+                        }
+                        ?>
 
 
                         <div class="player">
+                            <a href="./audio/BICEP_OPAL.mp3"></a>
                             <audio id="audioPlayer" controls>
-                                <source id="audioSource" src="./img/Bicep - Just.mp3" type="audio/mp3">
+                                <?php echo '<source src="./audio/' . $pathmusique . '">'; ?>
                             </audio>
 
                             <div class="controls">
-                                <button onclick="playPrevious()">Précédent</button>
-                                <button onclick="playNext()">Suivant</button>
+                                <?php
+                                function getTrackLink($music)
+                                {
+
+                                    return 'music.php?id=' . $music;
+                                }
+
+
+                                $music = isset($_GET['id']) ? intval($_GET['id']) : 1;
+                                $previousTrack = ($music > 1) ? $music - 1 : $music;
+                                $nextTrack = $music + 1;
+                                ?>
+                                <button onclick="location.href='<?php echo getTrackLink($previousTrack); ?>'">Précédent</button>
+
+                                <button onclick="location.href='<?php echo getTrackLink($nextTrack); ?>'">Suivant</button>
                             </div>
                         </div>
 
                         <script>
                             let audioPlayer = document.getElementById("audioPlayer");
                             let audioSource = document.getElementById("audioSource");
-                            let playlist = [
-                                "chemin/vers/audio1.mp3",
-                                "chemin/vers/audio2.mp3",
-                                "chemin/vers/audio3.mp3"
-                            ];
-                            let currentTrack = 0;
 
                             function loadTrack(trackIndex) {
                                 audioSource.src = playlist[trackIndex];
                                 audioPlayer.load();
                                 audioPlayer.play();
-                            }
-
-                            function playPrevious() {
-                                currentTrack--;
-                                if (currentTrack < 0) {
-                                    currentTrack = playlist.length - 1;
-                                }
-                                loadTrack(currentTrack);
-                            }
-
-                            function playNext() {
-                                currentTrack++;
-                                if (currentTrack >= playlist.length) {
-                                    currentTrack = 0;
-                                }
-                                loadTrack(currentTrack);
                             }
                         </script>
 
@@ -82,16 +93,40 @@ include('./partiels/marquee-rss.php')
 
     <section>
         <div class="comment">
-           <form action="" method="POST">
-           <input type="text" id="comm" placeholder="comment" />
-            <button type="submit" class="btn btn-primary">Submite</button>
-           </form>
-        
+            <form action="" method="POST">
+                <input type="text" id="comm" placeholder="comment" />
+                <button type="submit" id="sub" class="btn btn-primary">Submite</button>
+            </form>
+
         </div>
         <br><br>
         <div class="commAffiche">
             <!-- afficher les comm -->
             <?php
+            $idMusique = $_GET['id'];
+            $sql = ("SELECT * FROM commentaire WHERE id_musique = :idmusique;");
+            $query = $db->prepare($sql);
+            $query->bindValue(':idmusique', $idMusique, PDO::PARAM_INT);
+            $query->execute();
+            $comments = $query->fetchAll(PDO::FETCH_ASSOC);
+            foreach ($comments as $comment) {
+                echo $comment['content'];
+            }
+
+            // Insérer un nouveau commentaire dans la base de données lorsque le formulaire est soumis
+            if (isset($_POST)) {
+                if (
+                    isset($_POST['comm']) && !empty($_POST['comm'])
+                ) {
+                    $comm = strip_tags($_POST['comm']);
+                    $sql = "INSERT INTO `commentaire` ( `content`) 
+            VALUES ( :comm );";
+                    $query = $db->prepare($sql);
+                    $query->bindValue(':comm', $comm, PDO::PARAM_STR);
+                    $query->execute();
+                    header('Location: music.php');
+                }
+            }
 
 
             ?>
@@ -100,7 +135,7 @@ include('./partiels/marquee-rss.php')
 
     <section>
         <?php
-        
+
         $sql = ("SELECT * FROM  playlist");
         $query = $db->prepare($sql);
         $query->execute();
@@ -114,10 +149,11 @@ include('./partiels/marquee-rss.php')
             echo '</a>';
             echo '</div>';
         }
-        
-
         ?>
+
+
     </section>
+
 
 
 

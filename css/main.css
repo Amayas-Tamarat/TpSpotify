@@ -20,7 +20,7 @@ body {
 .container2 {
     background-color: black;
     display: flex;
-    overflow-x: scroll;
+    
     white-space: nowrap;
     padding: 0%;
 }
@@ -109,3 +109,19 @@ background: rgb(39, 241, 255);
   font-family: "CircularSpotifyText-Book", sans-serif;
   src: url("./font/Circular\ Book\ Font\ Family/CircularSpotifyText-Book");
 }
+
+.footer {
+  height: 60px;
+  width: 2000px;
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ss {
+  height: 100px;
+  width: auto;
+}
+

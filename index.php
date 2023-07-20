@@ -41,7 +41,7 @@ include('./partiels/marquee-rss.php');
             $_GET['id'] = $album['id_album'];
             $albumId = $album['id_album'];
             echo '<div class="box">';
-            echo '<a href="playlist-player.php?id=' . $albumId . '">';
+            echo '<a href="album_player.php?id=' . $albumId . '">';
             echo '<img src="../img/' . $album['img'] . '" alt="" />';
             echo '<h5>' . $album['title'] . '</h5>';
             echo '</a>';
@@ -63,7 +63,7 @@ include('./partiels/marquee-rss.php');
             $_GET['id'] = $playlist['id_playlist'];
             $playlistId = $playlist['id_playlist'];
             echo '<div class="box">';
-            echo '<a href="playlist-player.php?id=' . $playlistId . '">';
+            echo '<a href="playlist_player.php?id=' . $playlistId . '">';
             echo '<img src="../img/' . $playlist['img'] . '" alt="" />';
             echo '</a>';
             echo '</div>';
@@ -76,11 +76,16 @@ include('./partiels/marquee-rss.php');
 
 
 
-
-
+<div class="footer">
+<audio controls>
+    <source src="chemin/vers/votre/fichier/audio.mp3" type="audio/mpeg">
+    Votre navigateur ne prend pas en charge l'élément audio.
+  </audio>
+</div>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+
 </body>
 
 </html>
