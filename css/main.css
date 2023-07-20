@@ -76,7 +76,6 @@ body {
     margin-top: 20px;
   }
   .audio-player {
-    background-color: #ffffff;
     padding: 10px;
     width: 300px;
   }
@@ -106,4 +105,19 @@ background: rgb(39, 255, 57);
 .redirect-btn {
   border-radius: 50%;
 background: rgb(39, 255, 57);
+}
+.navbar{
+  background-color: rgba(73, 73, 73, 0.751);
+}
+.svg{
+  left: 500px;
+}
+svg{
+  fill: white;
+}
+a{
+  text-decoration: none;
+}
+span{
+  color: white;
 }
