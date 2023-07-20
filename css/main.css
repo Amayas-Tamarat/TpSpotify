@@ -114,6 +114,7 @@ background: rgb(39, 255, 57);
 }
 svg{
   fill: white;
+  text-decoration: none;
 }
 a{
   text-decoration: none;
