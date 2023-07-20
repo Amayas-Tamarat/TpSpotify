@@ -11,7 +11,6 @@ $query->bindValue(':idPlaylist', $idPlaylist, PDO::PARAM_INT);
 $query->execute();
 $musiques = $query->fetchAll(PDO::FETCH_ASSOC);
 foreach ($musiques as $musique) {
-    $_GET['id_musique'] = $musique['id_musique'];
     $musiqueId = $musique['id_musique'];
     $musicPath = $musique['path'];
     $musicPath = $musique['path'];
