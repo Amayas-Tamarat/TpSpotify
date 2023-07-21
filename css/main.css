@@ -1,5 +1,5 @@
 body {
-    background-color: black;
+    background-color: rgb(46, 36, 36);
     margin: 10px;
 }
 
@@ -89,7 +89,6 @@ body {
     border-radius: 5px;
   }
   .audio-player {
-    padding: 10px;
     width: 300px;
   }
   
@@ -119,8 +118,11 @@ background: rgb(39, 255, 57);
   border-radius: 50%;
 background: rgb(39, 255, 57);
 }
-.navbar{
+.bg-navbar{
   background-color: rgba(73, 73, 73, 0.751);
+}
+.navbar{
+  position: fixed;
 }
 .svg{
   left: 500px;
@@ -134,17 +136,10 @@ a{
 span{
   color: white;
 }
-
-#playlists {
-  margin-top: 10px;
+.grey-back{
+  background-color: rgb(33, 33, 29);
+  border: solid;
+  border-radius: 5%;
 }
-
-.card-body {
-  background-color: rgb(74, 76, 76);
-  border: 3px solid black;
-  border-radius: 5px;
-}
-
-.card{
-  border: 4px solid rgb(69, 67, 67);
-}
+.grey-back-no-border{
+  background-color: rgb(33, 33, 29);

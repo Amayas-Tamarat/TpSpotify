@@ -33,6 +33,7 @@ require_once("./partiels/header.php");
         $query->execute();
         $musiques = $query->fetchAll(PDO::FETCH_ASSOC);
         ?>
+
         
         <style>
   .img-fond { 
@@ -45,7 +46,8 @@ require_once("./partiels/header.php");
 
 <div class="container-fluid">
     <div class="row">
-      <div class="col-4">
+      <div class="col-2">
+      <div class="grey-back">
         <p>SpotHify</p>
         <div>
       <a href="./index.php">
@@ -54,12 +56,28 @@ require_once("./partiels/header.php");
   </a>
         </div>
       
-    </div>
-      <div class="col-8 img-fond">
-      <div class="navbar">
+      </div>
+      <div class="grey-back">
+    <p>Bibliothèque</p>
+        <div>
+      <a href="./index.php">
+      <svg version="1.2" baseProfile="tiny" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M18 6h-6c0-1.104-.896-2-2-2h-4c-1.654 0-3 1.346-3 3v10c0 1.654 1.346 3 3 3h12c1.654 0 3-1.346 3-3v-8c0-1.654-1.346-3-3-3zm-12 0h4c0 1.104.896 2 2 2h6c.552 0 1 .448 1 1h-14v-2c0-.552.448-1 1-1zm12 12h-12c-.552 0-1-.448-1-1v-7h14v7c0 .552-.448 1-1 1z"/></svg>
+      <span>En construction</span> 
+  </a>
+        </div>
+      </div>
+
+      </div>
+
+
+      <div class="img-fond col-10">
+      <div class="navbar bg-navbar">
   <button id="prev-btn"><</button>
   <button id="next-btn">></button>
 </div>
+
+
+
 <script>
   document.getElementById('prev-btn').addEventListener('click', function() {
     history.back(); 
@@ -69,15 +87,15 @@ require_once("./partiels/header.php");
     history.forward();
   });
 </script>
+
+
       <div class="pt-5">
         <h2><?php echo $playlists[0]['title'] ?></h2>
       </div>
-
-        <div class="container">
           <?php
           foreach ($musiques as $musique) {
             echo '
-  <div class="row">
+  <div class="row grey-back-no-border">
       <div class=" d-flex ">
           <div class="audio-player">
               <div class="controls">
@@ -90,6 +108,10 @@ require_once("./partiels/header.php");
   </div>';
           }
           ?>
+
+
+        </div>
+      
           <script>
             let currentAudio = null;
 
