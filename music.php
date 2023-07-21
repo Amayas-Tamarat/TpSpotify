@@ -119,8 +119,8 @@ foreach ($musiques as $musique) {
                     isset($_POST['comm']) && !empty($_POST['comm'])
                 ) {
                     $comm = strip_tags($_POST['comm']);
-                    $sql = "INSERT INTO `commentaire` ( `content`) 
-            VALUES ( :comm );";
+                    $sql = "INSERT INTO `commentaire` ( `content`,`id_musique`) 
+            VALUES ( :comm $idMusique);";
                     $query = $db->prepare($sql);
                     $query->bindValue(':comm', $comm, PDO::PARAM_STR);
                     $query->execute();
@@ -144,7 +144,7 @@ foreach ($musiques as $musique) {
             $_GET['id'] = $playlist['id_playlist'];
             $playlistId = $playlist['id_playlist'];
             echo '<div class="box">';
-            echo '<a href="playlist-player.php?id=' . $playlistId . '">';
+            echo '<a href="playlist_player.php?id=' . $playlistId . '">';
             echo '<img src="../img/' . $playlist['img'] . '" alt="" />';
             echo '</a>';
             echo '</div>';
