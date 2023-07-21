@@ -33,6 +33,7 @@ require_once("./partiels/header.php");
         $query->execute();
         $musiques = $query->fetchAll(PDO::FETCH_ASSOC);
         ?>
+
         
         <style>
   .img-fond { 
@@ -65,13 +66,18 @@ require_once("./partiels/header.php");
   </a>
         </div>
       </div>
-      
+
       </div>
+
+
       <div class="img-fond col-10">
-      <div class="navbar">
+      <div class="navbar bg-navbar">
   <button id="prev-btn"><</button>
   <button id="next-btn">></button>
 </div>
+
+
+
 <script>
   document.getElementById('prev-btn').addEventListener('click', function() {
     history.back(); 
@@ -81,6 +87,8 @@ require_once("./partiels/header.php");
     history.forward();
   });
 </script>
+
+
       <div class="pt-5">
         <h2><?php echo $playlists[0]['title'] ?></h2>
       </div>

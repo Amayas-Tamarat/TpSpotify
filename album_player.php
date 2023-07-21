@@ -46,10 +46,12 @@
       
       </div>
     <div class="img-fond col-10">
+      <div class="bg-navbar">
       <div class="navbar">
   <button id="prev-btn"><</button>
   <button id="next-btn">></button>
 </div>
+      </div>
 <script>
   document.getElementById('prev-btn').addEventListener('click', function() {
     history.back(); 
