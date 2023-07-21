@@ -60,14 +60,61 @@ foreach ($musiques as $musique) {
                                     return 'music.php?id=' . $music;
                                 }
 
-
+                                $sql = 'SELECT COUNT(id_musique) AS musiqueCount  FROM musique';
+                                $request = $db->query($sql);
+                                $numero = $request->fetch();
                                 $music = isset($_GET['id']) ? intval($_GET['id']) : 1;
+
                                 $previousTrack = ($music > 1) ? $music - 1 : $music;
                                 $nextTrack = $music + 1;
-                                ?>
-                                <button onclick="location.href='<?php echo getTrackLink($previousTrack); ?>'">Précédent</button>
 
-                                <button onclick="location.href='<?php echo getTrackLink($nextTrack); ?>'">Suivant</button>
+
+                                ?>
+
+
+                                <button class="btn btn-primary" onclick="location.href='<?php echo getTrackLink($previousTrack); ?>'">Précédent</button>
+
+                                <?php if ($_GET['id'] === $numero['musiqueCount']) { ?>
+
+                                    <button disabled>suivant</button>
+
+                                <?php } else { ?>
+
+                                    <button class="btn btn-primary" onclick="location.href='<?php echo getTrackLink($nextTrack); ?>'">Suivant</button>
+
+                                <?php } ?>
+                                <?php
+                                $idMusique = $_GET['id'];
+                                $query = "SELECT id_playlist, tilte FROM playlist";
+                                $listPlaylists = $db->query($query);
+
+                                // Check if the form is submitted
+                                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                                    if (isset($_POST['selectedPlaylist'])) {
+                                        $selectedPlaylist = $_POST['selectedPlaylist'];
+                                        $insertQuery = "INSERT INTO musique_playlist (id_musique, id_playlist) VALUES ('$idMusique', '$selectedPlaylist')";
+                                        $db->query($insertQuery);
+                                    }
+                                }
+                                ?>
+
+                                <label for="playlist"></label>
+                                  
+                                <form class="form-floating" method="POST">
+                                    <select  name="selectedPlaylist" id="playlists">
+                                        <?php
+                                        foreach ($listPlaylists as $playlist) {
+                                            $id_playlist = $playlist['id_playlist'];
+                                            $title = $playlist['tilte'];
+                                        ?>
+                                            <option value="<?php echo $id_playlist; ?>"><?php echo $title; ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
+
+                                    <button class="btn btn-primary" type="submit">Add to Playlist</button>
+                                </form>
                             </div>
                         </div>
 
@@ -92,9 +139,13 @@ foreach ($musiques as $musique) {
     </section>
 
     <section>
+        <?php
+        $idMusique = $_GET['id'];
+        ?>
         <div class="comment">
-            <form action="" method="POST">
-                <input type="text" id="comm" placeholder="comment" />
+
+            <form action="traitementCommantaire.php?idMusique=<?php echo $idMusique ?>" method="POST">
+                <input type="text" id="comm" name="comm" placeholder="comment" />
                 <button type="submit" id="sub" class="btn btn-primary">Submite</button>
             </form>
 
@@ -103,37 +154,29 @@ foreach ($musiques as $musique) {
         <div class="commAffiche">
             <!-- afficher les comm -->
             <?php
-            $idMusique = $_GET['id'];
-            $sql = ("SELECT * FROM commentaire WHERE id_musique = :idmusique;");
-            $query = $db->prepare($sql);
-            $query->bindValue(':idmusique', $idMusique, PDO::PARAM_INT);
-            $query->execute();
-            $comments = $query->fetchAll(PDO::FETCH_ASSOC);
-            foreach ($comments as $comment) {
-                echo $comment['content'];
-            }
-
-            // Insérer un nouveau commentaire dans la base de données lorsque le formulaire est soumis
-            if (isset($_POST)) {
-                if (
-                    isset($_POST['comm']) && !empty($_POST['comm'])
-                ) {
-                    $comm = strip_tags($_POST['comm']);
-                    $sql = "INSERT INTO `commentaire` ( `content`,`id_musique`) 
-            VALUES ( :comm $idMusique);";
-                    $query = $db->prepare($sql);
-                    $query->bindValue(':comm', $comm, PDO::PARAM_STR);
-                    $query->execute();
-                    header('Location: music.php');
-                }
-            }
-
-
+            include('./traitement/adCom.php');
             ?>
+            <script>
+                function refreshChat() {
+                    fetch('music.php')
+                        .then(response => response.text())
+                        .then(data => {
+                            document.getElementById('commAffiche').innerHTML = data;
+                        })
+                        .catch(error => console.error(error));
+                }
+
+
+                setInterval(refreshChat, 2500);
+            </script>
+
+
+
         </div>
     </section>
 
     <section>
+        
         <?php
 
         $sql = ("SELECT * FROM  playlist");
@@ -144,6 +187,7 @@ foreach ($musiques as $musique) {
             $_GET['id'] = $playlist['id_playlist'];
             $playlistId = $playlist['id_playlist'];
             echo '<div class="box">';
+            echo '<a href="playlist_player.php?id=' . $playlistId . '">';
             echo '<a href="playlist_player.php?id=' . $playlistId . '">';
             echo '<img src="../img/' . $playlist['img'] . '" alt="" />';
             echo '</a>';
