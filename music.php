@@ -85,7 +85,7 @@ foreach ($musiques as $musique) {
                                 <?php } ?>
                                 <?php
                                 $idMusique = $_GET['id'];
-                                $query = "SELECT id_playlist, tilte FROM playlist";
+                                $query = "SELECT id_playlist, title FROM playlist";
                                 $listPlaylists = $db->query($query);
 
                                 // Check if the form is submitted
