@@ -23,7 +23,7 @@ include('./partiels/marquee-rss.php');
     <section class="sec1">
         <div class="head">
             <button class="btn btn-primary">Accueil</button><br><br>
-            <button class="btn btn-primary">connexion</button><br><br>
+            
             <input class="recherche" placeholder="Recherche" type="text">
         </div>
 
@@ -77,10 +77,9 @@ include('./partiels/marquee-rss.php');
 
 
 <div class="footer">
-<audio controls>
-    <source src="chemin/vers/votre/fichier/audio.mp3" type="audio/mpeg">
-    Votre navigateur ne prend pas en charge l'élément audio.
-  </audio>
+<?php 
+include ('./partiels./footer.php')
+?>
 </div>
 
 
